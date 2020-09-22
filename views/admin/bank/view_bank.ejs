@@ -8,6 +8,7 @@
         <div id="content">
           <%- include('../../includes/navbar.ejs') %>
           <div class="container-fluid">
+            <%- include('../../includes/message.ejs') %>
             <h1 class="h3 mb-4 text-gray-800">Bank</h1>
             <!-- table -->
             <%- include('table_bank.ejs') %>
@@ -56,6 +57,21 @@
         </div>
       </div>
     </div>
-    <%- include('../../includes/script.ejs') %>
+    <%- include('add_bank.ejs') %> <%- include('edit_bank.ejs') %> <%-
+    include('../../includes/script.ejs') %>
+
+    <script>
+      $("#dataTable").on("click", ".btn-update", function () {
+        let id = $(this).data("id");
+        let bankName = $(this).data("bankname");
+        let accountNumber = $(this).data("accountnumber");
+        let accountName = $(this).data("accountname");
+        $("#edit-modal").modal("show");
+        $(".id").val(id);
+        $(".bank-name").val(bankName);
+        $(".account-number").val(accountNumber);
+        $(".account-name").val(accountName);
+      });
+    </script>
   </body>
 </html>
