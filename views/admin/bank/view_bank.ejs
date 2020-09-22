@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('includes/header.ejs') %>
+  <%- include('../../includes/header.ejs') %>
   <body id="page-top">
     <div id="wrapper">
-      <%- include('includes/sidebar.ejs') %>
+      <%- include('../../includes/sidebar.ejs') %>
       <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
-          <%- include('includes/navbar.ejs') %>
+          <%- include('../../includes/navbar.ejs') %>
           <div class="container-fluid">
-            <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+            <h1 class="h3 mb-4 text-gray-800">Bank</h1>
+            <!-- table -->
+            <%- include('table_bank.ejs') %>
           </div>
         </div>
-        <%- include('includes/footer.ejs') %>
+        <%- include('../../includes/footer.ejs') %>
       </div>
     </div>
     <a class="scroll-to-top rounded" href="#page-top">
@@ -54,6 +56,6 @@
         </div>
       </div>
     </div>
-    <%- include('includes/script.ejs') %>
+    <%- include('../../includes/script.ejs') %>
   </body>
 </html>
