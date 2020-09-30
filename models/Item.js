@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { ObjectId } = mongoose.Schema();
+const { ObjectId } = mongoose.Schema;
 
 const itemSchema = new mongoose.Schema({
   title: {
@@ -8,10 +8,6 @@ const itemSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: true,
-  },
-  image: {
-    type: String,
     required: true,
   },
   city: {
@@ -24,10 +20,15 @@ const itemSchema = new mongoose.Schema({
   },
   isPopular: {
     type: Boolean,
+    default: false,
   },
   description: {
     type: String,
     required: true,
+  },
+  categoryId: {
+    type: ObjectId,
+    ref: "Category",
   },
   imageId: [{ type: ObjectId, ref: "Image" }],
   featureId: [{ type: ObjectId, ref: "Feature" }],

@@ -8,9 +8,79 @@
         <div id="content">
           <%- include('../../includes/navbar.ejs') %>
           <div class="container-fluid">
+            <%- include('../../includes/message.ejs') %>
             <h1 class="h3 mb-4 text-gray-800">Item</h1>
-            <!-- table -->
-            <%- include('table_item.ejs') %>
+            <!-- navs tab -->
+            <% if(action == 'view') { %>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link active"
+                  id="show-item"
+                  data-toggle="tab"
+                  href="#home"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                  >Data Item</a
+                >
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="add-item"
+                  data-toggle="tab"
+                  href="#profile"
+                  role="tab"
+                  aria-controls="profile"
+                  aria-selected="false"
+                  >Add Item</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <%- include('table_item.ejs') %> <%- include('add_item.ejs') %>
+            </div>
+
+            <%} else if(action == 'show image') {%>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link active"
+                  id="show-image"
+                  data-toggle="tab"
+                  href="#show-image"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                  >Image</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <%- include('show_image_item.ejs') %>
+            </div>
+
+            <%} else {%>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link active"
+                  id="edit-item"
+                  data-toggle="tab"
+                  href="#edit-item"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                  >Edit Item</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <%- include('edit_item.ejs') %>
+            </div>
+
+            <%}%>
           </div>
         </div>
         <%- include('../../includes/footer.ejs') %>
@@ -57,5 +127,8 @@
       </div>
     </div>
     <%- include('../../includes/script.ejs') %>
+    <script>
+      CKEDITOR.replace("about");
+    </script>
   </body>
 </html>
