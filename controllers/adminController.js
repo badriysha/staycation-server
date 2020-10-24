@@ -2,6 +2,7 @@ const Category = require("../models/Category");
 const Bank = require("../models/Bank");
 const Item = require("../models/Item");
 const Image = require("../models/Image");
+const Feature = require("../models/Feature");
 
 const fs = require("fs-extra");
 const path = require("path");
@@ -331,6 +332,40 @@ module.exports = {
       req.flash("alertMessage", `${error.message}`);
       req.flash("alertStatus", "danger");
       res.redirect("/admin/item");
+    }
+  },
+  viewDetailItem: async (req, res) => {
+    const { itemId } = req.params;
+    try {
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+      res.render("admin/item/detail_item/view_detail_item", {
+        title: "Detail Item | Staycation",
+        alert,
+      });
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect(`/admin/item/detail_item/${itemId}`);
+    }
+  },
+  addFeature: async (req, res) => {
+    try {
+      const { bankName, accountNumber, accountName } = req.body;
+      await Feature.create({
+        bankName,
+        accountNumber,
+        accountName,
+        imageUrl: `images/${req.file.filename}`,
+      });
+      req.flash("alertMessage", "Success add bank account");
+      req.flash("alertStatus", "success");
+      res.redirect("/admin/bank");
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/admin/bank");
     }
   },
   // BOOKING
